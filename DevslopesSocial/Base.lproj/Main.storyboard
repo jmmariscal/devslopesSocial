@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt1-29-1g7">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt1-29-1g7" customClass="FancyView" customModule="DevslopesSocial" customModuleProvider="target">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="devslopes-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oju-jF-zLk"/>
                                 </subviews>
@@ -53,7 +53,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dN-pN-i5F">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dN-pN-i5F" customClass="RoundButton" customModule="DevslopesSocial" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.2291906178" green="0.34924262760000002" blue="0.59513628480000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="e64-fc-rqQ"/>
@@ -63,7 +63,7 @@
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UyQ-yH-oIF">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tH0-bA-lZZ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tH0-bA-lZZ">
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -73,7 +73,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8w-My-8p9">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8w-My-8p9" customClass="FancyButton" customModule="DevslopesSocial" customModuleProvider="target">
                                         <color key="backgroundColor" red="0.8666666666666667" green="0.17254901960784313" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                         <state key="normal" title="Sign in">
@@ -82,24 +82,32 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdn-hW-aBs">
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2dN-pN-i5F" firstAttribute="top" secondItem="PYz-r3-1cR" secondAttribute="bottom" constant="40" id="43y-fd-5uA"/>
+                            <constraint firstItem="2dN-pN-i5F" firstAttribute="top" secondItem="PYz-r3-1cR" secondAttribute="bottom" constant="20" id="43y-fd-5uA"/>
                             <constraint firstItem="PYz-r3-1cR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="6bx-yv-YxC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UyQ-yH-oIF" secondAttribute="trailing" constant="30" id="7gu-m4-pRz"/>
                             <constraint firstItem="UyQ-yH-oIF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="Bb4-hS-1mK"/>
+                            <constraint firstItem="gdn-hW-aBs" firstAttribute="top" secondItem="2dN-pN-i5F" secondAttribute="bottom" constant="31" id="CHV-H1-1ob"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WxU-op-0r7" secondAttribute="bottom" id="NhI-gr-F7i"/>
                             <constraint firstItem="UyQ-yH-oIF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O6O-a6-xef"/>
+                            <constraint firstItem="UyQ-yH-oIF" firstAttribute="top" secondItem="gdn-hW-aBs" secondAttribute="bottom" constant="33" id="OF8-I7-AZu"/>
                             <constraint firstItem="PYz-r3-1cR" firstAttribute="top" secondItem="Lt1-29-1g7" secondAttribute="bottom" constant="20" id="Prb-lR-e3a"/>
                             <constraint firstItem="Lt1-29-1g7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Z5Q-5b-Qfs"/>
                             <constraint firstItem="PYz-r3-1cR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dI6-yK-r2z"/>
                             <constraint firstItem="2dN-pN-i5F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hbP-WE-zUM"/>
                             <constraint firstItem="Lt1-29-1g7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hcd-ts-bdv"/>
-                            <constraint firstItem="UyQ-yH-oIF" firstAttribute="top" secondItem="2dN-pN-i5F" secondAttribute="bottom" constant="40" id="ipf-fn-TGG"/>
+                            <constraint firstItem="UyQ-yH-oIF" firstAttribute="top" secondItem="2dN-pN-i5F" secondAttribute="bottom" constant="85" id="ipf-fn-TGG"/>
                             <constraint firstAttribute="trailing" secondItem="WxU-op-0r7" secondAttribute="trailing" id="lTb-6Z-6On"/>
                             <constraint firstItem="WxU-op-0r7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="r0H-PO-LVi"/>
                             <constraint firstAttribute="trailing" secondItem="Lt1-29-1g7" secondAttribute="trailing" id="vFG-dc-i0s"/>
+                            <constraint firstItem="gdn-hW-aBs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wHB-Cl-b2f"/>
                         </constraints>
                     </view>
                 </viewController>
