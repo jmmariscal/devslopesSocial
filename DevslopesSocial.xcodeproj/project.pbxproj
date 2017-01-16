@@ -20,6 +20,7 @@
 		AFC474221E29A91D00FBFD91 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474211E29A91D00FBFD91 /* FancyButton.swift */; };
 		AFC474251E2BF37100FBFD91 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474241E2BF37100FBFD91 /* FeedVC.swift */; };
 		AFC474271E2C823500FBFD91 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474261E2C823500FBFD91 /* CircleView.swift */; };
+		AFC474291E2C8B7300FBFD91 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474281E2C8B7300FBFD91 /* PostCell.swift */; };
 		DE8E427C0C7636B452C9F62D /* Pods_DevslopesSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4F2C0A1B2647F44C0E505F /* Pods_DevslopesSocial.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		AFC474231E29D19400FBFD91 /* DevslopesSocial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevslopesSocial.entitlements; sourceTree = "<group>"; };
 		AFC474241E2BF37100FBFD91 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		AFC474261E2C823500FBFD91 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		AFC474281E2C8B7300FBFD91 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		D2B3B8273321D6276271CE9A /* Pods-DevslopesSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevslopesSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-DevslopesSocial/Pods-DevslopesSocial.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 				AFC4741F1E29A78F00FBFD91 /* FancyTextField.swift */,
 				AFC474211E29A91D00FBFD91 /* FancyButton.swift */,
 				AFC474261E2C823500FBFD91 /* CircleView.swift */,
+				AFC474281E2C8B7300FBFD91 /* PostCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				AFC474201E29A78F00FBFD91 /* FancyTextField.swift in Sources */,
 				AFC474191E29A3A300FBFD91 /* FancyView.swift in Sources */,
 				AFC4741C1E29A43100FBFD91 /* Constants.swift in Sources */,
+				AFC474291E2C8B7300FBFD91 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
