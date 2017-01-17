@@ -13,6 +13,7 @@
 		AF2BE6481E28469D00D42A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF2BE6471E28469D00D42A81 /* Assets.xcassets */; };
 		AF2BE64B1E28469E00D42A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF2BE6491E28469E00D42A81 /* LaunchScreen.storyboard */; };
 		AF2BE6531E28475E00D42A81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF2BE6521E28475E00D42A81 /* GoogleService-Info.plist */; };
+		AFA88EC21E2DC9A60021E3DD /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA88EC11E2DC9A60021E3DD /* DataService.swift */; };
 		AFC474191E29A3A300FBFD91 /* FancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474181E29A3A300FBFD91 /* FancyView.swift */; };
 		AFC4741C1E29A43100FBFD91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC4741B1E29A43100FBFD91 /* Constants.swift */; };
 		AFC4741E1E29A61400FBFD91 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC4741D1E29A61400FBFD91 /* RoundButton.swift */; };
@@ -35,6 +36,7 @@
 		AF2BE64A1E28469E00D42A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF2BE64C1E28469E00D42A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF2BE6521E28475E00D42A81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AFA88EC11E2DC9A60021E3DD /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		AFC474181E29A3A300FBFD91 /* FancyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyView.swift; sourceTree = "<group>"; };
 		AFC4741B1E29A43100FBFD91 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AFC4741D1E29A61400FBFD91 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		AF2BE63F1E28469D00D42A81 /* DevslopesSocial */ = {
 			isa = PBXGroup;
 			children = (
+				AFA88EC01E2DC98A0021E3DD /* Services */,
 				AFC474231E29D19400FBFD91 /* DevslopesSocial.entitlements */,
 				AFC4741A1E29A41E00FBFD91 /* Util */,
 				AF2BE6541E2849A400D42A81 /* Model */,
@@ -130,6 +133,14 @@
 				AFC474241E2BF37100FBFD91 /* FeedVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		AFA88EC01E2DC98A0021E3DD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AFA88EC11E2DC9A60021E3DD /* DataService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		AFC4741A1E29A41E00FBFD91 /* Util */ = {
@@ -284,6 +295,7 @@
 				AFC4741E1E29A61400FBFD91 /* RoundButton.swift in Sources */,
 				AF2BE6411E28469D00D42A81 /* AppDelegate.swift in Sources */,
 				AFC474221E29A91D00FBFD91 /* FancyButton.swift in Sources */,
+				AFA88EC21E2DC9A60021E3DD /* DataService.swift in Sources */,
 				AFC474251E2BF37100FBFD91 /* FeedVC.swift in Sources */,
 				AFC474201E29A78F00FBFD91 /* FancyTextField.swift in Sources */,
 				AFC474191E29A3A300FBFD91 /* FancyView.swift in Sources */,
