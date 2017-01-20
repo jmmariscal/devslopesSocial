@@ -129,6 +129,7 @@
         <!--FeedVC-->
         <scene sceneID="Zd9-mI-vQe">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NTk-NQ-bnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="e6z-EP-B75" customClass="FeedVC" customModule="DevslopesSocial" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O5t-UT-i3z"/>
@@ -146,9 +147,6 @@
                                             <constraint firstAttribute="width" constant="43" id="BLs-tb-fVD"/>
                                             <constraint firstAttribute="height" constant="43" id="Jvn-al-mwU"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="gKS-29-sZM" appends="YES" id="6Dg-Ke-f77"/>
-                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cga-uy-HUW">
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
@@ -188,13 +186,15 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAr-tU-WxG" customClass="RoundButton" customModule="DevslopesSocial" customModuleProvider="target">
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.17254901959999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="49" id="JPw-Ms-tao"/>
                                                     <constraint firstAttribute="height" constant="49" id="sYF-Dh-ejm"/>
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
                                                 <connections>
-                                                    <action selector="postBtnTapped:" destination="e6z-EP-B75" eventType="touchUpInside" id="Iu4-39-wPt"/>
+                                                    <action selector="postBtnTapped:" destination="e6z-EP-B75" eventType="touchUpInside" id="vJu-Jt-Ufm"/>
+                                                    <outletCollection property="gestureRecognizers" destination="iqk-zV-Iss" appends="YES" id="yfI-4L-D0I"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -322,10 +322,9 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="gSy-q7-f62"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NTk-NQ-bnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="gKS-29-sZM">
+                <tapGestureRecognizer id="iqk-zV-Iss">
                     <connections>
-                        <action selector="signOutTapped:" destination="e6z-EP-B75" id="WiR-EM-llF"/>
+                        <action selector="postBtnTapped:" destination="e6z-EP-B75" id="jEY-jY-SIp"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="hWe-GD-mAh">

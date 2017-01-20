@@ -91,6 +91,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
+
     @IBAction func postBtnTapped(_ sender: AnyObject) {
         
         guard let caption =  captionField.text, caption != "" else {
@@ -108,20 +109,44 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata,error) in
                 if error != nil {
-                    print("TEST: Unable to upload image to Firebase storage")
+                    print("TEST: Unable to upload image toFirebase storage")
                 } else {
-                    print("TEST: Succesfully uploaded image to Firebase storage")
+                    print("TEST: Succesfully uploaded image toFirebase storage")
                     let downloadURL = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadURL {
+                        
+                        self.postToFirebase(imgUrl: url)
+                    }
                 }
             }
         }
-        
     }
+
+    
     
     @IBAction func addImageTapped(_ sender: AnyObject) {
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func postToFirebase(imgUrl: String) {
+        
+        let post: Dictionary<String, AnyObject> = [
+        
+        "caption": captionField.text! as AnyObject,
+        "imageURL": imgUrl as AnyObject,
+        "likes": 0 as AnyObject
+            ]
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        captionField.text = ""
+        imageSelected = false
+        imageAdd.image = UIImage(named: "add-image")
+        
+        tableView.reloadData()
     }
     
     @IBAction func signOutTapped(_ sender: AnyObject) {
