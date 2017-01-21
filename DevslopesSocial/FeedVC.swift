@@ -15,6 +15,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageAdd: CircleView!
     @IBOutlet weak var captionField: FancyTextField!
+
+    
     
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
@@ -67,13 +69,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
 
             if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
-                
                 cell.configureCell(post: post, img: img)
-                return cell
             } else {
                 cell.configureCell(post: post)
-                return cell
             }
+            return cell
         } else {
             return PostCell()
         }
@@ -135,7 +135,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let post: Dictionary<String, AnyObject> = [
         
         "caption": captionField.text! as AnyObject,
-        "imageURL": imgUrl as AnyObject,
+        "imageUrl": imgUrl as AnyObject,
         "likes": 0 as AnyObject
             ]
         

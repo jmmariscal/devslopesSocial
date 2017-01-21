@@ -129,7 +129,6 @@
         <!--FeedVC-->
         <scene sceneID="Zd9-mI-vQe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NTk-NQ-bnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="e6z-EP-B75" customClass="FeedVC" customModule="DevslopesSocial" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O5t-UT-i3z"/>
@@ -147,6 +146,9 @@
                                             <constraint firstAttribute="width" constant="43" id="BLs-tb-fVD"/>
                                             <constraint firstAttribute="height" constant="43" id="Jvn-al-mwU"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="ijW-2n-kxo" appends="YES" id="2yo-V1-Mqj"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cga-uy-HUW">
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
@@ -292,6 +294,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="caption" destination="MXw-wx-wVt" id="fJl-Wa-XnH"/>
+                                            <outlet property="likeImg" destination="iDX-Pg-bES" id="Mdg-CW-Pac"/>
                                             <outlet property="likesLbl" destination="uiV-hQ-1z6" id="w0L-yd-i28"/>
                                             <outlet property="postImg" destination="DET-oP-ool" id="lgI-nZ-eif"/>
                                             <outlet property="profileImg" destination="bYa-Bb-jSk" id="2Ts-eM-Am5"/>
@@ -322,6 +325,7 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="gSy-q7-f62"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NTk-NQ-bnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="iqk-zV-Iss">
                     <connections>
                         <action selector="postBtnTapped:" destination="e6z-EP-B75" id="jEY-jY-SIp"/>
@@ -330,6 +334,11 @@
                 <tapGestureRecognizer id="hWe-GD-mAh">
                     <connections>
                         <action selector="addImageTapped:" destination="e6z-EP-B75" id="C9k-ce-0Q9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ijW-2n-kxo">
+                    <connections>
+                        <action selector="signOutTapped:" destination="e6z-EP-B75" id="2x0-Qs-hVy"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
