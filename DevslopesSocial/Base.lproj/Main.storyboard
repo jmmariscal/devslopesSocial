@@ -320,6 +320,9 @@
                     </view>
                     <connections>
                         <outlet property="captionField" destination="GlT-IO-HCI" id="WuK-Z7-DTn"/>
+                        <outlet property="captionFieldOutterView" destination="JdN-BO-zwQ" id="hxZ-Y8-OKY"/>
+                        <outlet property="captionFieldStackView" destination="d8F-FC-JjW" id="agJ-0L-wgq"/>
+                        <outlet property="captionFieldTopConstraint" destination="CcX-4v-cIv" id="oLh-fc-Rnh"/>
                         <outlet property="imageAdd" destination="oaM-6K-5Ss" id="aFz-cZ-Xjf"/>
                         <outlet property="tableView" destination="bWr-Zx-G9U" id="A23-ZR-acW"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="gSy-q7-f62"/>

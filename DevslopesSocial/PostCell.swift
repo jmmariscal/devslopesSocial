@@ -71,8 +71,7 @@ class PostCell: UITableViewCell {
 
     func likeTapped(sender: UITapGestureRecognizer) {
         
-        //likesRef = DataService.ds.REF_USER_CURRENT.child("likes")
-        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likeImg.image = UIImage(named: "filled-heart")
                 self.post.adjustLikes(addLike: true)

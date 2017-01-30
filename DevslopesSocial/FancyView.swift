@@ -20,5 +20,6 @@ class FancyView: UIView {
         layer.cornerRadius = 2.0
         
     }
+
     
 }

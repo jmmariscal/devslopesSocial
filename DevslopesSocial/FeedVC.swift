@@ -10,13 +10,18 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageAdd: CircleView!
     @IBOutlet weak var captionField: FancyTextField!
+    @IBOutlet weak var captionFieldTopConstraint: NSLayoutConstraint!
 
+    var captionFieldTopConstraintConstant:CGFloat = 16.0
+
+    @IBOutlet weak var captionFieldStackView: UIStackView!
     
+    @IBOutlet weak var captionFieldOutterView: FancyView!
     
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
@@ -33,6 +38,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        
+        //Listen for keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector (keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        //To hide keyboard
+        self.captionField.delegate = self
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             
@@ -52,6 +63,60 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
             self.tableView.reloadData()
         })
+    }
+    
+    
+    
+    // Hide keyboard when user touches outside keybaord
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+        returnCaptionFieldToTop()
+    }
+    
+    // Hide keyboard when user presses return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        captionField.resignFirstResponder()
+        returnCaptionFieldToTop()
+        return (true)
+    }
+    
+    // Return caption field back to the top of the screen
+    func returnCaptionFieldToTop() {
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.captionFieldTopConstraint.constant = self.captionFieldTopConstraintConstant
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    
+    func keyboardWillShow(notification:NSNotification) {
+        
+        if let info = notification.userInfo {
+            
+            let rect = (info["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
+            
+            //Find our target Y
+            let targetY = view.frame.size.height - rect.height - 16 - captionField.frame.size.height
+            
+            //Find out where the stackview is relative to the frame
+            let textFieldY = captionFieldOutterView.frame.origin.y + captionFieldStackView.frame.origin.y + captionField.frame.origin.y
+            
+            let difference = targetY - textFieldY
+            
+            let targetOffsetForTopConstraint = captionFieldTopConstraint.constant + difference
+            
+            self.view.layoutIfNeeded()
+            
+            UIView.animate(withDuration: 0.25, animations: { 
+                
+                self.captionFieldTopConstraint.constant = targetOffsetForTopConstraint
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,6 +159,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
 
     @IBAction func postBtnTapped(_ sender: AnyObject) {
         
+        self.view.endEditing(true)
+        returnCaptionFieldToTop()
+        
         guard let caption =  captionField.text, caption != "" else {
             print("TEST: Caption must be entered")
             return
@@ -127,6 +195,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     
     @IBAction func addImageTapped(_ sender: AnyObject) {
+        
+        self.view.endEditing(true)
+        returnCaptionFieldToTop()
+        
         present(imagePicker, animated: true, completion: nil)
     }
     

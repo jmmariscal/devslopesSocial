@@ -33,7 +33,6 @@ class SignInVC: UIViewController {
         }
     }
 
-
     @IBAction func facebookBtnTapped(_ sender: AnyObject) {
         
         let facebookLogin = FBSDKLoginManager()
