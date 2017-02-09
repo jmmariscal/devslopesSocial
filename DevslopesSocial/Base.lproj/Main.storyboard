@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -118,7 +118,10 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="tH0-bA-lZZ" id="93c-h9-a6J"/>
+                        <outlet property="facebookLogo" destination="2dN-pN-i5F" id="I0O-4v-lxq"/>
                         <outlet property="pswdField" destination="kha-qE-z5q" id="D9Q-Ei-bRT"/>
+                        <outlet property="signInStackView" destination="UyQ-yH-oIF" id="PsQ-8G-8Hy"/>
+                        <outlet property="signInTopConstraint" destination="ipf-fn-TGG" id="0z9-tq-eo7"/>
                         <segue destination="e6z-EP-B75" kind="show" identifier="goToFeed" id="BUV-II-ZTm"/>
                     </connections>
                 </viewController>
@@ -155,6 +158,17 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pet-qR-DuO">
+                                        <frame key="frameInset" minX="310" minY="19" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Edit">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="qE0-d3-zjQ" kind="presentation" id="xfx-6J-TAD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -228,6 +242,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5rX-lU-54K">
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="bYa-Bb-jSk" customClass="CircleView" customModule="DevslopesSocial" customModuleProvider="target">
+                                                                            <gestureRecognizers/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="60" id="T3B-ea-xSW"/>
                                                                                 <constraint firstAttribute="height" constant="60" id="V3g-ZB-khv"/>
@@ -297,7 +312,7 @@
                                             <outlet property="likeImg" destination="iDX-Pg-bES" id="Mdg-CW-Pac"/>
                                             <outlet property="likesLbl" destination="uiV-hQ-1z6" id="w0L-yd-i28"/>
                                             <outlet property="postImg" destination="DET-oP-ool" id="lgI-nZ-eif"/>
-                                            <outlet property="profileImg" destination="bYa-Bb-jSk" id="2Ts-eM-Am5"/>
+                                            <outlet property="profileImg" destination="bYa-Bb-jSk" id="5nj-Xk-UnB"/>
                                             <outlet property="userNameLbl" destination="ufF-zE-3Tu" id="FVt-PR-uLv"/>
                                         </connections>
                                     </tableViewCell>
@@ -328,15 +343,15 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="gSy-q7-f62"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="hWe-GD-mAh">
+                    <connections>
+                        <action selector="addImageTapped:" destination="e6z-EP-B75" id="C9k-ce-0Q9"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTk-NQ-bnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="iqk-zV-Iss">
                     <connections>
                         <action selector="postBtnTapped:" destination="e6z-EP-B75" id="jEY-jY-SIp"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="hWe-GD-mAh">
-                    <connections>
-                        <action selector="addImageTapped:" destination="e6z-EP-B75" id="C9k-ce-0Q9"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="ijW-2n-kxo">
@@ -346,6 +361,139 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="688.79999999999995" y="-289.20539730134936"/>
+        </scene>
+        <!--EditVC-->
+        <scene sceneID="7wv-TS-Jw4">
+            <objects>
+                <viewController id="qE0-d3-zjQ" customClass="EditVC" customModule="DevslopesSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o7o-cp-QYw"/>
+                        <viewControllerLayoutGuide type="bottom" id="W3T-Ns-nTo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZOH-H8-6Lg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nVB-2A-i6n">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jty-eZ-XVA">
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter new username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="610-5z-95U">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="610-5z-95U" firstAttribute="leading" secondItem="nVB-2A-i6n" secondAttribute="leadingMargin" constant="20" id="Qsd-nB-EjD"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="610-5z-95U" secondAttribute="trailing" constant="20" id="V0Y-KO-kGl"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hwr-BO-6Uc">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTK-qo-2iM">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="e6z-EP-B75" kind="presentation" id="T2w-Vf-kL3"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNE-aM-mYT">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.59215686270000001" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="wTK-qo-2iM" firstAttribute="top" secondItem="Hwr-BO-6Uc" secondAttribute="top" constant="17" id="447-in-g0u"/>
+                                    <constraint firstItem="lNE-aM-mYT" firstAttribute="centerX" secondItem="Hwr-BO-6Uc" secondAttribute="centerX" id="Bcu-d4-arI"/>
+                                    <constraint firstAttribute="height" constant="65" id="Do8-yT-cAo"/>
+                                    <constraint firstItem="wTK-qo-2iM" firstAttribute="leading" secondItem="Hwr-BO-6Uc" secondAttribute="leading" constant="21" id="a70-cj-Qq4"/>
+                                    <constraint firstItem="lNE-aM-mYT" firstAttribute="top" secondItem="Hwr-BO-6Uc" secondAttribute="top" constant="17" id="aQF-Hn-fap"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-Bz-5xH">
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XN1-BL-xu1">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose New Profile Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehD-37-5YO">
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="m7E-s5-yYh" userLabel="Profile Image Add" customClass="CircleView" customModule="DevslopesSocial" customModuleProvider="target">
+                                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="Av1-eb-nCl"/>
+                                                    <constraint firstAttribute="height" constant="150" id="zc2-My-Fs0"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="yRU-w3-jF8" appends="YES" id="6GR-Tt-TSo"/>
+                                                </connections>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="230" id="Ser-Yn-fNJ"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f23-Ql-kRk" customClass="FancyButton" customModule="DevslopesSocial" customModuleProvider="target">
+                                        <color key="backgroundColor" red="0.86666666670000003" green="0.17254901959999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="pjx-Jz-w34"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Save Changes">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveBtnTapped:" destination="qE0-d3-zjQ" eventType="touchUpInside" id="A4h-ad-MRx"/>
+                                            <segue destination="e6z-EP-B75" kind="presentation" id="wwo-nW-9is"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="XN1-BL-xu1" firstAttribute="leading" secondItem="Lle-Bz-5xH" secondAttribute="leading" constant="21" id="7Tt-va-0ZN"/>
+                                    <constraint firstAttribute="bottom" secondItem="f23-Ql-kRk" secondAttribute="bottom" id="LLx-jH-67r"/>
+                                    <constraint firstItem="XN1-BL-xu1" firstAttribute="centerX" secondItem="Lle-Bz-5xH" secondAttribute="centerX" id="bx1-V8-X9R"/>
+                                    <constraint firstAttribute="trailing" secondItem="XN1-BL-xu1" secondAttribute="trailing" constant="21" id="tMK-dr-E61"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.69803921570000005" green="0.87450980389999999" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Lle-Bz-5xH" firstAttribute="top" secondItem="nVB-2A-i6n" secondAttribute="bottom" constant="80" id="74m-Sc-TNK"/>
+                            <constraint firstItem="Lle-Bz-5xH" firstAttribute="centerX" secondItem="ZOH-H8-6Lg" secondAttribute="centerX" id="Aq3-Ow-bm5"/>
+                            <constraint firstAttribute="trailing" secondItem="Hwr-BO-6Uc" secondAttribute="trailing" id="GMg-g3-wHx"/>
+                            <constraint firstAttribute="trailing" secondItem="nVB-2A-i6n" secondAttribute="trailing" constant="10" id="OgP-mf-clh"/>
+                            <constraint firstItem="Hwr-BO-6Uc" firstAttribute="leading" secondItem="ZOH-H8-6Lg" secondAttribute="leading" id="PRF-mh-QAl"/>
+                            <constraint firstItem="Hwr-BO-6Uc" firstAttribute="top" secondItem="ZOH-H8-6Lg" secondAttribute="top" id="RKw-TX-Ryh"/>
+                            <constraint firstItem="nVB-2A-i6n" firstAttribute="leading" secondItem="ZOH-H8-6Lg" secondAttribute="leading" constant="10" id="XIt-Wp-OSI"/>
+                            <constraint firstItem="nVB-2A-i6n" firstAttribute="top" secondItem="Hwr-BO-6Uc" secondAttribute="bottom" constant="55" id="lbG-3Y-ToE"/>
+                            <constraint firstItem="nVB-2A-i6n" firstAttribute="centerX" secondItem="ZOH-H8-6Lg" secondAttribute="centerX" id="qin-tW-x5y"/>
+                            <constraint firstItem="Lle-Bz-5xH" firstAttribute="leading" secondItem="ZOH-H8-6Lg" secondAttribute="leading" constant="20" id="sXh-8m-b8B"/>
+                            <constraint firstAttribute="trailing" secondItem="Lle-Bz-5xH" secondAttribute="trailing" constant="20" id="x0Z-ot-iGi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profileImageAdd" destination="m7E-s5-yYh" id="tMh-Lx-9ma"/>
+                        <outlet property="userNameTextField" destination="610-5z-95U" id="2Qm-YY-M9X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v5t-Ea-tCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yRU-w3-jF8">
+                    <connections>
+                        <action selector="addProfileImageTapped:" destination="qE0-d3-zjQ" id="fEw-sM-wQF"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1437.5999999999999" y="-289.20539730134936"/>
         </scene>
     </scenes>
     <resources>
@@ -358,4 +506,7 @@
         <image name="profile" width="113" height="155"/>
         <image name="sign-out" width="92" height="65"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="T2w-Vf-kL3"/>
+    </inferredMetricsTieBreakers>
 </document>

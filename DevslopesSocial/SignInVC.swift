@@ -13,16 +13,25 @@ import Firebase
 import SwiftKeychainWrapper
 
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var pswdField: UITextField!
+    @IBOutlet weak var emailField: FancyTextField!
+    @IBOutlet weak var pswdField: FancyTextField!
+    @IBOutlet weak var signInTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var signInStackView: UIStackView!
+    @IBOutlet weak var facebookLogo: RoundButton!
     
-    
+    var signInTopConstraintConstant: CGFloat = 85.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Listen for keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector (emailKeyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        //Refrence to caption text field to hide keyboard
+        self.emailField.delegate = self
+        self.pswdField.delegate = self
         
     }
     
@@ -70,6 +79,62 @@ class SignInVC: UIViewController {
                 
             }
         })
+    }
+    
+    // Hide keyboard when user touches outside keybaord
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.facebookLogo.isHidden = false
+        self.view.endEditing(true)
+        returnSignInCaptionFieldToTop()
+    }
+    
+    // Hide keyboard when user presses return key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.facebookLogo.isHidden = false
+        emailField.resignFirstResponder()
+        pswdField.resignFirstResponder()
+        returnSignInCaptionFieldToTop()
+        return (true)
+    }
+    
+    // Return caption field back to the top of the screen
+    func returnSignInCaptionFieldToTop() {
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.signInTopConstraint.constant = self.signInTopConstraintConstant
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func emailKeyboardWillShow(notification:NSNotification) {
+        
+        self.facebookLogo.isHidden = true
+        
+        if let info = notification.userInfo {
+            
+            let rect = (info["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
+            
+            //Find our target Y
+            let targetY = view.frame.size.height - rect.height - 90 - emailField.frame.size.height
+            
+            //Find out where the stackview is relative to the frame
+            let textFieldY = signInStackView.frame.origin.y + emailField.frame.origin.y
+            
+            let difference = targetY - textFieldY
+            
+            let targetOffsetForTopConstraint = signInTopConstraint.constant + difference
+            
+            self.view.layoutIfNeeded()
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                
+                self.signInTopConstraint.constant = targetOffsetForTopConstraint
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     @IBAction func signBtnTapped(_ sender: AnyObject) {

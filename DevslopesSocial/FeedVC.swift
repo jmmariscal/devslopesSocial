@@ -20,10 +20,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var captionFieldTopConstraintConstant:CGFloat = 16.0
 
     @IBOutlet weak var captionFieldStackView: UIStackView!
-    
     @IBOutlet weak var captionFieldOutterView: FancyView!
     
     var posts = [Post]()
+    var postRef: PostCell!
     var imagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imageSelected = false
@@ -39,10 +39,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
+        //Observer to reload Tableview
+        NotificationCenter.default.addObserver(self, selector: Selector(("loadList:")), name: NSNotification.Name(rawValue: "load"), object: nil)
+        
         //Listen for keyboard
         NotificationCenter.default.addObserver(self, selector: #selector (keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        //To hide keyboard
+        //Refrence to caption text field to hide keyboard
         self.captionField.delegate = self
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
@@ -65,7 +68,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         })
     }
     
-    
+    func loadList(notification: NSNotification) {
+        
+        //load data
+        self.tableView.reloadData()
+    }
     
     // Hide keyboard when user touches outside keybaord
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -132,23 +139,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-
-            if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
-                cell.configureCell(post: post, img: img)
-            } else {
-                cell.configureCell(post: post)
-            }
+            
+            if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString), let profileImg = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) {
+                cell.configureCell(post: post, img: img, profileImg: profileImg)
+                
+            }else { cell.configureCell(post: post)}
             return cell
-        } else {
-            return PostCell()
-        }
+        } else {return PostCell()}
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             imageAdd.image = image
+            //profileImgAdd.image = image
             imageSelected = true
         } else {
             print("TEST: valid image wasn't selected")
@@ -191,8 +196,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             }
         }
     }
-
-    
     
     @IBAction func addImageTapped(_ sender: AnyObject) {
         
@@ -202,6 +205,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         present(imagePicker, animated: true, completion: nil)
     }
     
+    //Post to Firebase
     func postToFirebase(imgUrl: String) {
         
         let post: Dictionary<String, AnyObject> = [

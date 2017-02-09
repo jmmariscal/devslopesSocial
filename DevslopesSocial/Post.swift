@@ -14,12 +14,17 @@ class Post {
     
     private var _caption: String!
     private var _imageUrl: String!
+    private var _profileImgUrl: String!
     private var _likes: Int!
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
     
     var caption: String {
         return _caption
+    }
+    
+    var profileImgUrl: String {
+        return _profileImgUrl
     }
     
     var imageUrl: String {
@@ -34,9 +39,10 @@ class Post {
         return _postKey
     }
     
-    init(caption: String, imageUrl: String, likes: Int) {
+    init(caption: String, imageUrl: String, likes: Int, profileImgUrl: String) {
         
         self._caption = caption
+        self._profileImgUrl = profileImgUrl
         self._imageUrl = imageUrl
         self._likes = likes
     }

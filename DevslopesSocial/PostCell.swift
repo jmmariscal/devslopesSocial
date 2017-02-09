@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PostCell: UITableViewCell {
+class PostCell: UITableViewCell,UIImagePickerControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
@@ -18,8 +18,13 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likesLbl: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     
+    
     var post: Post!
     var likesRef: FIRDatabaseReference!
+    var profileImgRef: FIRDatabaseReference!
+    var imagePicker: UIImagePickerController!
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var imageSelected = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,10 +35,38 @@ class PostCell: UITableViewCell {
         likeImg.isUserInteractionEnabled = true
     }
     
-    func configureCell(post: Post, img: UIImage? = nil) {
+//    func configureCellWithProfileImg(post: Post, profileImg: UIImage? = nil) {
+//        self.post = post
+//        
+//        if profileImg != nil {
+//            self.profileImg.image = profileImg
+//        } else {
+//            let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
+//            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+//                if error != nil {
+//                    print("TEST: unable to download image form Firebase storage")
+//                } else {
+//                    print("TEST: Image downloaded from Firebase storage")
+//                    if let imgData = data {
+//                        
+//                        if let img = UIImage(data: imgData) {
+//                            
+//                            self.profileImg.image = img
+//                            FeedVC.imageCache.setObject(img, forKey: post.profileImgUrl as NSString)
+//                        }
+//                    }
+//                }
+//            })
+//        }
+//    }
+    
+    func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
         
         self.post = post
+        print("TEST: configureCell")
+
         likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
+        profileImgRef = DataService.ds.REF_USER_CURRENT.child("profileImgUrl")
         self.caption.text = post.caption
         self.likesLbl.text = "\(post.likes)"
         
@@ -58,6 +91,27 @@ class PostCell: UITableViewCell {
             })
         }
         
+        if profileImg != nil {
+            self.profileImg.image = img
+            print("TEST: configureCell")
+        } else {
+            let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("TEST: unable to download image form Firebase storage")
+                } else {
+                    print("TEST: Image downloaded from Firebase storage")
+                    if let imgData = data {
+                        
+                        if let img = UIImage(data: imgData) {
+                            
+                            self.profileImg.image = img
+                            FeedVC.imageCache.setObject(img, forKey: post.profileImgUrl as NSString)
+                        }
+                    }
+                }
+            })
+        }
         
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -83,6 +137,9 @@ class PostCell: UITableViewCell {
             }
         })
     }
+    
+    
+    
 
 }
 

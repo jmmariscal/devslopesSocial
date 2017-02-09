@@ -23,6 +23,7 @@
 		AFC474271E2C823500FBFD91 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474261E2C823500FBFD91 /* CircleView.swift */; };
 		AFC474291E2C8B7300FBFD91 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC474281E2C8B7300FBFD91 /* PostCell.swift */; };
 		AFD5135C1E2F201000F9025F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD5135B1E2F201000F9025F /* Post.swift */; };
+		AFFFEC131E401E13007F2794 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFFEC121E401E13007F2794 /* EditVC.swift */; };
 		DE8E427C0C7636B452C9F62D /* Pods_DevslopesSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4F2C0A1B2647F44C0E505F /* Pods_DevslopesSocial.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		AFC474261E2C823500FBFD91 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		AFC474281E2C8B7300FBFD91 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		AFD5135B1E2F201000F9025F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AFFFEC121E401E13007F2794 /* EditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		D2B3B8273321D6276271CE9A /* Pods-DevslopesSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevslopesSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-DevslopesSocial/Pods-DevslopesSocial.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,8 +102,8 @@
 				AF2BE6561E2849AE00D42A81 /* Controller */,
 				AF2BE6401E28469D00D42A81 /* AppDelegate.swift */,
 				AF2BE6441E28469D00D42A81 /* Main.storyboard */,
-				AF2BE6471E28469D00D42A81 /* Assets.xcassets */,
 				AF2BE6491E28469E00D42A81 /* LaunchScreen.storyboard */,
+				AF2BE6471E28469D00D42A81 /* Assets.xcassets */,
 				AF2BE64C1E28469E00D42A81 /* Info.plist */,
 				AF2BE6521E28475E00D42A81 /* GoogleService-Info.plist */,
 			);
@@ -134,6 +136,7 @@
 			children = (
 				AF2BE6421E28469D00D42A81 /* SignInVC.swift */,
 				AFC474241E2BF37100FBFD91 /* FeedVC.swift */,
+				AFFFEC121E401E13007F2794 /* EditVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				AFC474191E29A3A300FBFD91 /* FancyView.swift in Sources */,
 				AFC4741C1E29A43100FBFD91 /* Constants.swift in Sources */,
 				AFC474291E2C8B7300FBFD91 /* PostCell.swift in Sources */,
+				AFFFEC131E401E13007F2794 /* EditVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
